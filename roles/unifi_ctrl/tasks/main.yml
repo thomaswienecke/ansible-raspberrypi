@@ -1,0 +1,35 @@
+---
+- name: Create unifi_ctrl Docker volumes
+  community.docker.docker_volume:
+    name: "{{ unifi_ctrl_volume_name }}"
+
+# UDP 3478 Port used for STUN. #REQUIRED
+# TCP 5514 Port used for remote syslog capture.
+# TCP 8080 Port used for device and controller communication. #REQUIRED
+# TCP 8443 Port used for controller GUI/API as seen in a web browser #REQUIRED
+# TCP 8880 Port used for HTTP portal redirection.
+# TCP 8843 Port used for HTTPS portal redirection.
+# TCP 6789 Port used for UniFi mobile speed test. #REQUIRED
+# TCP 27117 Port used for local-bound database communication.
+# UDP 5656-5699 Ports used by AP-EDU broadcasting.
+# UDP 10001 Port used for device discovery #REQUIRED
+# UDP 1900 Port used for "Make controller discoverable on L2 network" in controller settings.
+- name: UniFi Controller Docker Container
+  community.docker.docker_container:
+    name: "Unifi-Controller"
+    image: "{{ unifi_ctrl_image }}:{{ unifi_ctrl_image_version }}"
+    pull: true
+    ports:
+      - "3478:3478/udp"
+      - "8080:8080"
+      - "8443:8443"
+      - "6789:6789"
+      - "10001:10001/udp"
+    mounts:
+      - source: "{{ unifi_ctrl_volume_name }}"
+        target: "/config"
+        type: "volume"
+    env:
+      TZ: "Europe/Berlin"
+    restart_policy: unless-stopped
+  register: unifi_ctrl_docker_started

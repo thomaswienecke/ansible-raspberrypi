@@ -1,0 +1,13 @@
+---
+- name: Main Playbook
+  gather_facts: false
+  hosts: all
+  roles:
+    - role: "docker"
+    - role: "unifi_ctrl"
+  tasks:
+    - name: Write "Hello World" to the file
+      ansible.builtin.copy:
+        content: Hello World
+        dest: ~/hello.txt
+        mode: 0644

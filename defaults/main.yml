@@ -1,0 +1,4 @@
+unifi_ctrl_volume_name: "unifi-ctrl-data"
+
+unifi_ctrl_image: "linuxserver/unifi-controller"
+unifi_ctrl_image_version: "arm64v8-7.3.83"
