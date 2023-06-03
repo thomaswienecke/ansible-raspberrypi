@@ -2,6 +2,12 @@
 
 This project provides an Ansible playbook for setting up a Raspberry Pi.
 
+## Features
+- Installs docker
+- Installs docker-compose
+- Installs unifi controller
+- Installs tailscale (as subnet router)
+
 ## Getting Started
 
 To use this playbook, you'll need to have Ansible installed on your local machine. You'll also need to have a Raspberry Pi with SSH access enabled.
