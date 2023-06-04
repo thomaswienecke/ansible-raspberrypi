@@ -10,6 +10,7 @@
         # manually set env var
         tailscale_authkey: "{{ lookup('env', 'TAILSCALE_KEY') }}"
         tailscale_args: "--advertise-routes=10.0.0.0/24"
+        # state: absent # uncomment to remove tailscale
   tasks:
     - name: Write "Hello World" to the file
       ansible.builtin.copy:
