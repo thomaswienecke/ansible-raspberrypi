@@ -15,4 +15,5 @@ To use this playbook, you'll need to have Ansible installed on your local machin
 1. Clone this repository to your local machine.
 2. Update the `inventory.yml` file with the IP address of your Raspberry Pi.
 3. Update the `defaults/main.yml` file with the configurations and packages you want to install.
-4. Run the playbook using the command `ansible-playbook main.yml -u <<username>>`.
+4. Run the playbook using the command `TAILSCALE_KEY=... ansible-playbook main.yml -u <<username>>`.
+5. You may need to manually reboot and restart the playbook after it crashes on docker group permissions.

@@ -1,4 +1,13 @@
 ---
+# Here a reboot might be necessary to get the docker service running
+# again. This is due to the fact that the docker service is not
+
+# Untested fix
+- name: Restart docker service
+  service:
+    name: docker
+    state: restarted
+
 - name: Create unifi_ctrl Docker volumes
   community.docker.docker_volume:
     name: "{{ unifi_ctrl_volume_name }}"
